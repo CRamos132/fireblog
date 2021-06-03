@@ -1,11 +1,12 @@
 import Link from 'next/link'
+import { useContext } from 'react'
+import { UserContext } from '../lib/context'
+import SignOutButton from './SignOutButton'
 
-interface User {
-    photoURL?: string;
-}
+
 
 const NavBar: React.FC = () => {
-    const {user, username}: {user: User, username: string} = {user: {}, username: ''}
+    const { user, username } = useContext(UserContext)
     return (
         <nav className="navbar">
             <ul>
@@ -17,6 +18,9 @@ const NavBar: React.FC = () => {
                 {username && (
                     <>
                         <li className="push-left">
+                            <SignOutButton />
+                        </li>
+                        <li>
                             <Link href='/admin'>
                                 <button className="btn-blue">Write Posts</button>
                             </Link>
